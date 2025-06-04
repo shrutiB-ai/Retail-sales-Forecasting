@@ -135,7 +135,7 @@ _ReSharper*/
 # TeamCity is a build add-in
 _TeamCity*
 
-# DotCover is a Code Coverage Tool
+# DotCover is a Code Coverage Tool	
 *.dotCover
 
 # AxoCover is a Code Coverage Tool
@@ -361,3 +361,11 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+#Data and output
+data/
+output/
+
+#python virtual env
+.venv/
+env/
