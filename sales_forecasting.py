@@ -35,7 +35,7 @@ except FileNotFoundError:
 
 # Preprocess
 df_clean = preprocess_data(df)
-X= df_clean.drop_(columns=['Weekly_sales'])
+X= df_clean.drop(columns=['Weekly_sales'])
 Y= df_clean['Weekly_sales']
 
 x_train,x_test,y_train,y_test = train_test_split(
@@ -56,5 +56,17 @@ mae_xgb,rmse_xgb,r2_xgb = evaluate_model(xgb_model,x_test,y_test)
 print("XGBoost Results")
 print(f"MAE:{mae_xgb:.2f} | RMSE : {rmse_xgb:.2f} | R2 score {r2_xgb:.2f}")
 
+results = pd.DataFrame({
+	'Model':['Linear Regression','XGBoost'],
+	'MAE':[mae_lin,mae_xgb],
+	'RMSE':[rmse_lin,rmse_xgb],
+	'R2 Score':[r2_lin,r2_xgb]
+	})
+
+print('Model Comparison')
+print(results)
+
+y_pred_lin = lin_model.predict(x_test)
+y_pred_xgb = xgb_model.predict(x_test)
 
 plot_predictions(y_test,y_pred_lin,y_pred_xgb,save_path=plot_path)
